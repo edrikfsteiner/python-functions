@@ -1,5 +1,6 @@
 def bubble_sort(arr):
     n = len(arr)
+
     for i in range(n):
         for j in range(0, n - i - 1):
             if arr[j] > arr[j + 1]:
@@ -11,6 +12,7 @@ def bubble_sort(arr):
 
 def insertion_sort(arr):
     n = len(arr)
+
     for i in range(1, n):
         marker = arr[i]
         j = i - 1
@@ -18,58 +20,12 @@ def insertion_sort(arr):
         while j >= 0 and marker < arr[j]:
             arr[j + 1] = arr[j]
             j -= 1
+            
         arr[j + 1] = marker
     
     return arr
 
-def merge_sort(arr):
-    print(f'Chamada com {arr}')
-    if len(arr) > 1:
-        half = len(arr)//2
-        left = arr[:half]
-        right = arr[half:]
-
-        print(f'Dividindo em {left} e {right}')
-
-        merge_sort(left)
-        merge_sort(right)
-
-        i = j = k = 0
-
-        while i < len(left) and j < len(right):
-            print(f'Posição {k} do ordenado: Comparando posição {i} de {left} com {j} de {right}')
-
-            if left[i] < right[j]:
-                print(f'Posição {i} da esquerda colocado na posição {k} do ordenado')
-                arr[k] = left[i]
-                i += 1
-                print(f'Array ordenado: {arr}')
-            else:
-                print(f'Posição {j} da direita colocado na posição {k} do ordenado')
-                arr[k] = right[j]
-                j += 1
-                print(f'Array ordenado: {arr}')
-            
-            k += 1
-            print(f'Deslocando-se para posição {k} do ordenado')
-
-        while i < len(left):
-            print(f'Posição {i} da esquerda colocado na posição {k} do ordenado')
-            arr[k] = left[i]
-            i += 1
-            k += 1
-            print(f'{arr} ordenados')
-
-        while j < len(right):
-            print(f'Posição {j} da direita colocado na posição {k} do ordenado')
-            arr[k] = right[j]
-            j += 1
-            k += 1
-            print(f'{arr} ordenados')
-
-    return arr
-
-######QUICK SORT - PART 1######
+############ QUICK SORT - PART 1 ############
 def partition(arr, start, end):
     pivot = arr[end]
     i = start - 1
@@ -82,12 +38,63 @@ def partition(arr, start, end):
     arr[i + 1], arr[end] = arr[end], arr[i + 1]
     return i + 1
 
-######QUICK SORT - PART 2######
-def quick_sort(vector, start, end):
+############ QUICK SORT - PART 2 ############
+def quick_sort(arr, start, end):
     if start < end:
-        position = partition(vector, start, end)
+        position = partition(arr, start, end)
 
-        quick_sort(vector, start, position - 1)
-        quick_sort(vector, position + 1, end)
+        quick_sort(arr, start, position - 1)
+        quick_sort(arr, position + 1, end)
 
-    return vector
+    return arr
+
+# The merge sort below has prints that helps explain how it's working,
+# as I've found it the most difficult to have a grasp on, and the prints
+# really helped me to get a understanding on it, while it's running.
+
+def merge_sort(arr):
+    print(f'Calling {arr}')
+    if len(arr) > 1:
+        half = len(arr)//2
+        left = arr[:half]
+        right = arr[half:]
+
+        print(f'Dividing in {left} and {right}')
+
+        merge_sort(left)
+        merge_sort(right)
+
+        i = j = k = 0
+
+        while i < len(left) and j < len(right):
+            print(f'Position {k} of the sorted array: Comparing position {i} from {left} with {j} from {right}')
+
+            if left[i] < right[j]:
+                print(f'Position {i} from left put in position {k} of the sorted array')
+                arr[k] = left[i]
+                i += 1
+                print(f'Sorted array: {arr}')
+            else:
+                print(f'Position {j} from right put in position {k} of the sorted array')
+                arr[k] = right[j]
+                j += 1
+                print(f'Sorted array: {arr}')
+            
+            k += 1
+            print(f'Changing to position {k} of the sorted array')
+
+        while i < len(left):
+            print(f'Position {i} from left put in position {k} of the sorted array')
+            arr[k] = left[i]
+            i += 1
+            k += 1
+            print(f'{arr} sorted')
+
+        while j < len(right):
+            print(f'Position {j} from right put in position {k} of the sorted array')
+            arr[k] = right[j]
+            j += 1
+            k += 1
+            print(f'{arr} sorted')
+
+    return arr

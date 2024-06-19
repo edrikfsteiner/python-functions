@@ -1,1 +1,1 @@
-A repository to store Python functions that are somewhat useful, and to test my skills in Python.
+A repository to test my skills in basic Python, and to store Python functions that are somewhat useful.
