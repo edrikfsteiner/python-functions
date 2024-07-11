@@ -98,3 +98,16 @@ def merge_sort(arr):
             print(f'{arr} sorted')
 
     return arr
+
+# Uncomment the code below to run the functions
+'''
+list = [2, 4, 1, 5, 3, 7, 9, 8, 6]
+list_bubble = bubble_sort(list)
+print(list_bubble)
+list_insertion = insertion_sort(list)
+print(list_insertion)
+list_quick = quick_sort(list, 0, len(list) - 1)
+print(list_quick)
+list_merge = merge_sort(list)
+print(list_merge)
+'''
